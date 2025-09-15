@@ -2,7 +2,6 @@ from flask import Flask, request, jsonify
 from flask_cors import CORS
 import PyPDF2
 import pdfplumber
-import pymupdf  # fitz
 import docx2txt
 import io
 import logging
@@ -69,7 +68,6 @@ def extract_pdf_text(pdf_bytes):
     Returns the first successful extraction or an error message
     """
     extraction_methods = [
-        ("PyMuPDF", extract_with_pymupdf),
         ("pdfplumber", extract_with_pdfplumber),
         ("PyPDF2", extract_with_pypdf2)
     ]
