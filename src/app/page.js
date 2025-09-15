@@ -8,7 +8,7 @@ export default function Home() {
   const [results, setResults] = useState([]);
   const [isAnalyzing, setIsAnalyzing] = useState(false);
   const [currentAnalyzing, setCurrentAnalyzing] = useState('');
-  const [pythonServiceUrl] = useState(process.env.NEXT_PUBLIC_PYTHON_SERVICE_URL || 'http://localhost:5000');
+  const [pythonServiceUrl] = useState(process.env.NEXT_PUBLIC_PYTHON_SERVICE_URL || 'https://resume-screener-ffbr.onrender.com');
 
   const handleFileUpload = (e) => {
     const files = Array.from(e.target.files);
