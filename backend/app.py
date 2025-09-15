@@ -45,23 +45,6 @@ def extract_with_pdfplumber(pdf_bytes):
         logger.warning(f"pdfplumber extraction failed: {e}")
         return None
 
-def extract_with_pymupdf(pdf_bytes):
-    """Extract text using PyMuPDF - most robust option"""
-    try:
-        pdf_file = io.BytesIO(pdf_bytes)
-        doc = pymupdf.open(stream=pdf_file, filetype="pdf")
-        text = ""
-        
-        for page_num in range(doc.page_count):
-            page = doc[page_num]
-            text += page.get_text() + "\n"
-        
-        doc.close()
-        return text.strip()
-    except Exception as e:
-        logger.warning(f"PyMuPDF extraction failed: {e}")
-        return None
-
 def extract_pdf_text(pdf_bytes):
     """
     Try multiple PDF extraction methods in order of reliability
@@ -171,4 +154,6 @@ def health_check():
     })
 
 if __name__ == '__main__':
-    app.run(debug=True, host='0.0.0.0', port=5000)
+    import os
+    port = int(os.environ.get('PORT', 5000))
+    app.run(debug=False, host='0.0.0.0', port=port)
